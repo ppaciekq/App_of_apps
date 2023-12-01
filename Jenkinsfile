@@ -67,8 +67,8 @@ pipeline {
             steps {
                 script {
                     withEnv(["PIP_BREAK_SYSTEM_PACKAGES=1"]) {
-                        sh 'pip3 install -r requirements.txt'
-                        sh 'python3 -m pytest test'
+                        sh 'pip3 install -r test/selenium/requirements.txt'
+                        sh 'python3 -m pytest test/selenium/selenium_test.py'
                     }
                 }
             }
