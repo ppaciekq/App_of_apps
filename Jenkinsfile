@@ -49,6 +49,28 @@ pipeline {
         }
 
 
+        stage('Deploy application') {
+            steps {
+                script {
+                    withEnv(["FRONTEND_IMAGE=$frontendImage:$frontendDockerTag", 
+                             "BACKEND_IMAGE=$backendImage:$backendDockerTag"]) {
+                       docker.withRegistry("$dockerRegistry", "$registryCredentials") {
+                            sh "docker-compose up -d"
+                        }
+                    }
+                }
+            }
+        }
+
+
+    post {
+        always {
+            script {
+                sh 'docker-compose down || true'
+                cleanWS()
+            }
+        }
+    }
 
 
 
