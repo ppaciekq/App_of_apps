@@ -1,5 +1,5 @@
-def frontendImage="ppaciekq/frontend"
-def backendImage="ppaciekq/backend"
+def frontendImage="ppaciekq/Frontend"
+def backendImage="ppaciekq/Backend"
 def dockerRegistry=""
 def registryCredentials="dockerhub"
 
