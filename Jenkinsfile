@@ -89,7 +89,7 @@ pipeline {
         always {
             script {
                 sh 'docker-compose down || true'
-                cleanWS()
+                cleanWs()
             }
         }
     }
