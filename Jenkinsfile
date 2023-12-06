@@ -78,6 +78,20 @@ pipeline {
         }
 
 
+        stage('Run terraform') {
+            steps {
+                dir('Terraform') {                
+                    git branch: 'main', url: 'https://github.com/ppaciekq/Terraform'
+                    withAWS(credentials:'AWS', region: 'us-east-1') {
+                            sh 'terraform init -backend-config=bucket=pawel-glinkowski-panda-devops-core-15'
+                            sh 'terraform apply -auto-approve -var bucket_name=pawel-glinkowski-panda-devops-core-15'
+                            
+                    } 
+                }
+            }
+        }
+
+
         stage('Run Ansible') {
                steps {
                    script {
