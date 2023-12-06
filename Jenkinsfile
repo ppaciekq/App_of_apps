@@ -9,6 +9,9 @@ pipeline {
         label 'agent'
     }
 
+    tools {
+        terraform 'Terraform'
+    }
  
     parameters {
         string(name: 'backendDockerTag', defaultValue: '', description: 'Backend docker image tag')
